@@ -48,6 +48,7 @@ li {
   width: 90%;
   margin: 0 5%;
   cursor: pointer;
+  background: white;
   border-bottom: solid 4px #949494;
   border-right: solid 4px #949494;
 }
@@ -61,6 +62,7 @@ li {
 .deletebtn{
   border-radius: 5px;
   cursor: pointer;
+  background: white;
   border-bottom: solid 2px #949494;
   border-right: solid 2px #949494;
 }
@@ -82,6 +84,7 @@ li {
 .editbtn{
   border-radius: 5px;
   cursor: pointer;
+  background: white;
   border-bottom: solid 2px #949494;
   border-right: solid 2px #949494;
 }
