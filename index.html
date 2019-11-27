@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo_portfolio</title>
+    <link rel="stylesheet" href="./sample.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div id="box1" class="box"
+           v-bind:class="{allBoxOpacity:allOpacityAvtive, opacityDisable:todoOpacity}"
+           v-on:dragenter="dragEnter('todoOpacity')">
+        <h1 class="title">やること</h1>
+        <ul>
+          <draggable tag="ul" :options="{group:'ITEMS'}" :disabled="enabled"
+                class="list" data-list-name="todo"
+                v-model="todo"
+                v-on:start="dragStart('todoOpacity')"
+                v-on:end="dragEnd">
+            <li v-for="(item, index) in todo" :key="item.id" v-cloak>
+              <div class="textArea">
+                <div v-show="!item.editMode"
+                     v-on:dblclick="changeEditMode(index,'todo')">
+                     {{item.text}}
+                </div>
+                <textarea v-on:keydown="resize(index)"
+                          v-on:keydown.enter="endEdit"
+                          @compositionstart="conversion=true"
+                          @compositionend="conversion=false"
+                          v-on:focus="resize(index)"
+                          v-show="item.editMode"
+                          v-model="item.text"
+                          ref="todo">
+                </textarea>
+              </div>
+              <div class="btn">
+                <button v-on:click="changeEditMode(index,'todo')" class="editbtn">
+                  <i v-show="!item.editMode" class="fas fa-pen fa-fw btnImage"></i>
+                  <i v-show="item.editMode" class="fas fa-check fa-fw btnImage"></i>
+                </button>
+                <button v-on:click="removeItem(index,'todo')" class="deletebtn">
+                  <i class="fas fa-trash-alt fa-fw btnImage"></i>
+                </button>
+              </div>
+            </li>
+          </draggable>
+        </ul>
+        <button v-on:click="addItem" class="addbtn">
+          <i class="fas fa-plus fa-4x"></i>
+        </button>
+      </div>
+
+      <div id="box2" class="box"
+          v-bind:class="{allBoxOpacity:allOpacityAvtive, opacityDisable:doingOpacity}"
+          v-on:dragenter="dragEnter('doingOpacity')">
+        <h1 class="title">実行中</h1>
+        <ul>
+          <draggable tag="ul" :options="{group:'ITEMS'}" :disabled="enabled"
+                data-list-name="doing" class="list"
+                v-model="doing"
+                v-on:start="dragStart('doingOpacity')"
+                v-on:end="dragEnd">
+            <li v-for="(item, index) in doing" :key="item.id" v-cloak>
+              <div class="textArea">
+                <div v-show="!item.editMode" v-on:dblclick="changeEditMode(index,'doing')">{{item.text}}</div>
+                <textarea v-on:keydown="resize(index)"
+                          v-on:keydown.enter="endEdit"
+                          @compositionstart="conversion=true"
+                          @compositionend="conversion=false"
+                          v-on:focus="resize(index)"
+                          v-show="item.editMode"
+                          v-model="item.text"
+                          ref="doing">
+                </textarea>
+              </div>
+              <span class="btn">
+                <button v-on:click="changeEditMode(index,'doing')" class="editbtn">
+                  <i v-show="!item.editMode" class="fas fa-pen fa-fw btnImage"></i>
+                  <i v-show="item.editMode" class="fas fa-check fa-fw btnImage"></i>
+                </button>
+                <button v-on:click="removeItem(index,'doing')" class="editbtn">
+                  <i class="fas fa-trash-alt fa-fw btnImage"></i>
+                </button>
+              </span>
+            </li>
+          </draggable>
+        </ul>
+      </div>
+      
+      <div  id="box3" class="box"
+           v-bind:class="{allBoxOpacity:allOpacityAvtive, opacityDisable:doneOpacity}"
+           v-on:dragenter="dragEnter('doneOpacity')">
+        <h1 class="title">完了</h1>
+        <ul>
+          <draggable tag="ul" :options="{group:'ITEMS'}" :disabled="enabled"
+                data-list-name="done" class="list"
+                v-model="done"
+                v-on:start="dragStart('doneOpacity')"
+                v-on:end="dragEnd">
+            <li v-for="(item, index) in done" :key="item.id" v-cloak>
+              <div class="textArea">
+                <div v-show="!item.editMode" v-on:dblclick="changeEditMode(index,'done')">{{item.text}}</div>
+                <textarea v-on:keydown="resize(index)"
+                          v-on:keydown.enter="endEdit"
+                          @compositionstart="conversion=true"
+                          @compositionend="conversion=false"
+                          v-on:focus="resize(index)"
+                          v-show="item.editMode"
+                          v-model="item.text"
+                          ref="done">
+                </textarea>
+              </div>
+              <span class="btn">
+                <button v-on:click="changeEditMode(index,'done')" class="editbtn">
+                  <i v-show="!item.editMode" class="fas fa-pen fa-fw btnImage"></i>
+                  <i v-show="item.editMode" class="fas fa-check fa-fw btnImage"></i>
+                </button>
+                <button v-on:click="removeItem(index,'done')" class="editbtn">
+                  <i class="fas fa-trash-alt fa-fw btnImage"></i>
+                </button>
+              </span>
+            </li>
+          </draggable>
+        </ul>
+        <p class="achievement" v-cloak>{{achievement}}%</p>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+    <script src="./sample.js" charset="utf-8"></script>
+  </body>
+</html>
