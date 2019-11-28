@@ -134,13 +134,13 @@ textarea {
   opacity: 1;
 }
 #box1{
-  background-color: #39cfe9;
+  background-color: #ec8686;
 }
 #box2{
   background-color: #bbd74a;
 }
 #box3{
-  background-color: #ec8686;
+  background-color: #39cfe9;
 }
 [v-cloak] {
   display:none;
