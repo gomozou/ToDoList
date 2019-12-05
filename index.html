@@ -87,11 +87,11 @@
           </draggable>
         </ul>
       </div>
-      
+
       <div  id="box3" class="box"
            v-bind:class="{allBoxOpacity:allOpacityAvtive, opacityDisable:doneOpacity}"
            v-on:dragenter="dragEnter('doneOpacity')">
-        <h1 class="title">完了</h1>
+        <h1 class="title titleSpace2">完了</h1>
         <ul>
           <draggable tag="ul" :options="{group:'ITEMS'}" :disabled="enabled"
                 data-list-name="done" class="list"
@@ -124,8 +124,8 @@
           </draggable>
         </ul>
         <p class="achievement" v-cloak>{{achievement}}%</p>
+        <div class="wave" v-bind:style="{top: wave + '%'}"></div>
       </div>
-      
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
