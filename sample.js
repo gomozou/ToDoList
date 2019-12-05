@@ -14,7 +14,8 @@ new Vue({
     todoOpacity:false,
     doingOpacity:false,
     doneOpacity:false,
-    rollSpeed: 30
+    rollSpeed: 30,
+    wave: 0
   },
   computed:{
     calcAchievement: function(){
@@ -23,10 +24,13 @@ new Vue({
       var list3 = this.done.length;
       var sum = list1 + list2 + list3;
       if(sum == 0){
+        this.wave = 100;
         return 0;
       } else if(list1 == 0 && list2 == 0 && (list3 > 0)){
+        this.wave = 0;
         return 100;
       } else {
+        this.wave = 100 - Math.round(list3 / sum * 100);
         return Math.round(list3 / sum * 100);
       }
     }
@@ -157,7 +161,6 @@ new Vue({
       this.allOpacityAvtive = false;
     },
     dragEnter: function(target){
-      console.log(target);
       if(target == 'todoOpacity'){
         this[target] = true;
         this.doingOpacity = false;
