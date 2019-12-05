@@ -140,13 +140,6 @@ textarea {
 #box1{
   background-color: #ec8686;
 }
-/* #box3::before{
-  content: "HELLO";
-  position: absolute;
-  top: 50%;
-  height:90vh;
-  background: #fff;
-} */
 #box2{
   background-color: #bbd74a;
 }
